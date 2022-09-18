@@ -39,14 +39,14 @@ function App() {
     setuptTodo({...uptTodo,[e.target.name] : e.target.value})
   }
   return (
-    <div className="flex-row justify-center items-center">
-      <Form w-4 onSubmit={handleSubmit}>
+    <div>
+      <Form onSubmit={handleSubmit}>
           <Inputs title={"title"} name={"title"} type={"text"} value={uptTodo.title} onChange={handleUpdateInput}/>
           <Inputs title={"description"} name={"description"} type={"text"} value={uptTodo.description} onChange={handleUpdateInput}/>
           <Inputs title={"id"} name={"id"} type={"number"} value={uptTodo.id} onChange={handleUpdateInput}/>
           <button type="submit" class="border border-teal-500 bg-teal-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-teal-600 focus:outline-none focus:shadow-outline">{mode}</button>
       </Form>
-      <FlexContainer flexDirection='column' gap={100}>
+      <FlexContainer>
         {state.map(user =>(
               <ToDo 
               key={user.id}

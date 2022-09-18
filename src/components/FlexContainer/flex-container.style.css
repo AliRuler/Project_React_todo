@@ -4,18 +4,5 @@
 
 @tailwind utilities;
 
-.flex-container{
-    display: flex;
-    padding: 20px;
-    flex-direction: column;
-    gap: 15px;
-    background-color: rgb(234, 234, 234);
-}
-.flex_row{
-    flex-direction: row;
-}
-.flex_column{
-    flex-direction: column;
-}
 
 
