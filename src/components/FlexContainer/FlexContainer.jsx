@@ -1,9 +1,10 @@
 import React from "react";
 import './flex-container.style.css'
-function FlexContainer({children, gap=0}){
+function FlexContainer({children}){
     return(
-        <div>
-            {children}</div>
+        <div className="container mx-auto">
+            {children}
+        </div>
     )
 }
 export default FlexContainer;
