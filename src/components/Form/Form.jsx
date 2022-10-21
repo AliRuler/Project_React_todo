@@ -3,35 +3,37 @@ import { useFormik } from "formik";
 import { addTodo } from "../../toolkit/slices/todo.slice";
 import { useDispatch } from "react-redux";
 import FlexContainer from "../FlexContainer/FlexContainer";
+import { Form, useParams } from "react-router-dom";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  const validate = (values) => {
-    const errors = {};
+  // const validate = (values) => {
+  //   const errors = {};
     // if (!values.email) {
     //     errors.email ="Required"
     // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)){
     //     errors.email = "Invalid email address"
     // }
-    return errors;
-  };
+  //   return errors;
+  // };
   const formik = useFormik({
     initialValues: {
       title: "",
       description: "",
-      id: undefined,
+      id: Math.floor(Math.random()*100)
     },
-    validate,
-    onSubmit: (values) => {
+    // validate,
+    onSubmit: (values, { resetForm }) => {
       alert(JSON.stringify(values, null, 2));
       dispatch(addTodo({ ...values, isDone: false }));
+      resetForm();
     },
   });
   return (
     <FlexContainer>
-      <form
+      <Form
         onSubmit={formik.handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="bg-neutral-200 shadow-md rounded px-8 pt-6 pb-8 my-8 "
       >
         <label
           htmlFor="title"
@@ -84,7 +86,7 @@ const SignUpForm = () => {
         >
           Submit
         </button>
-      </form>
+      </Form>
     </FlexContainer>
   );
 };

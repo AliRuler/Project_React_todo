@@ -1,24 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
 import Todo from "../pages/Todo/Todo";
 import Home from "../pages/Home/Home";
-import Header from "../components/Layout/Header/Header";
+import Layout from "../components/Layout";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Header/>,
+        element: <Layout/>,
         children: [
             {   
                 index: true,
                 element: <Home />,
             },
             {
-                path: 'Todo',
+                path: "/Todos",
                 element: <Todo />,
+            },
+            {
+                path: "/update/:id",
+                element: <Home />
             }
         ]
     },
+    
 ]);
 
 
