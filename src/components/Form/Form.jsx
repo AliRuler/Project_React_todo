@@ -1,31 +1,35 @@
 import React from "react";
 import { useFormik } from "formik";
-import { addTodo } from "../../toolkit/slices/todo.slice";
-import { useDispatch } from "react-redux";
+import { addTodo, updateTodo } from "../../toolkit/slices/todo.slice";
+import { useDispatch, useSelector } from "react-redux";
 import FlexContainer from "../FlexContainer/FlexContainer";
 import { Form, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  // const validate = (values) => {
-  //   const errors = {};
-    // if (!values.email) {
-    //     errors.email ="Required"
-    // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)){
-    //     errors.email = "Invalid email address"
-    // }
-  //   return errors;
-  // };
+  const todos = useSelector(state => state.todos);
+  const param = useParams();
+  const update = param.id?true:false;
+  const navigation = useNavigate();
+
+  let editTodo = {};
+  if(update){
+    editTodo = todos.filter(item => item.id == param.id)[0];
+  }
   const formik = useFormik({
     initialValues: {
-      title: "",
-      description: "",
-      id: Math.floor(Math.random()*100)
+      title: update? editTodo.title: "",
+      description: update? editTodo.description: "",
     },
     // validate,
     onSubmit: (values, { resetForm }) => {
-      alert(JSON.stringify(values, null, 2));
-      dispatch(addTodo({ ...values, isDone: false }));
+      if (!update){
+        dispatch(addTodo({ ...values,id: update?editTodo.id:Math.floor(Math.random()*100), isDone: false }));
+      }else{
+        dispatch(updateTodo({...values,id:editTodo.id}));
+      }
+      navigation("/");
       resetForm();
     },
   });
@@ -47,9 +51,9 @@ const SignUpForm = () => {
           name="title"
           type="text"
           onChange={formik.handleChange}
-          value={formik.values.email}
+          value={formik.values.title}
         />
-        <label
+        {/* <label
           htmlFor="id"
           className="mb-4"
         >
@@ -62,7 +66,7 @@ const SignUpForm = () => {
           type="number"
           onChange={formik.handleChange}
           value={formik.values.id}
-        />
+        /> */}
         <label
           htmlFor="description"
           className="mb-4 "
@@ -84,7 +88,7 @@ const SignUpForm = () => {
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
         >
-          Submit
+          {update?"Update":"Submit"}
         </button>
       </Form>
     </FlexContainer>
