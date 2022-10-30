@@ -1,10 +1,13 @@
 import React from 'react'
 import SignUpForm from '../../components/Form/Form'
-
+import ReactDatePicker from 'react-datepicker'
 const Home = () => {
   // console.log("aaaaa");
   return (
-    <SignUpForm/>
+    <div>
+      <SignUpForm></SignUpForm>
+    </div>
+    
   )
 }
 

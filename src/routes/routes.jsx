@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Todo from "../pages/Todo/Todo";
+import ListTodos from "../pages/ListTodos/ListTodos";
 import Home from "../pages/Home/Home";
 import Layout from "../components/Layout";
 
@@ -10,12 +10,12 @@ const router = createBrowserRouter([
         element: <Layout/>,
         children: [
             {   
-                index: true,
+                path: "/AddTodo",
                 element: <Home />,
             },
             {
                 path: "/Todos",
-                element: <Todo />,
+                element: <ListTodos />,
             },
             {
                 path: "/update/:id",

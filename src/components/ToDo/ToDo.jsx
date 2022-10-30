@@ -2,19 +2,23 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeTodo } from '../../toolkit/slices/todo.slice';
-
-const ToDo = ({todo}) =>{
-    const dispatch = useDispatch()
-    return(
-        <div className="flex justify-center items-center w-full flex-row justify-center items-center mb-2 w-full bg-gray-200 p-6">
-          <div>
-            <h1 className="text-3xl">{todo.title}</h1>
-            <p className='text-lg'>{todo.description}</p>
-          </div>
-          <button className='ml-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' onClick={()=>dispatch(removeTodo(todo.id))}>Delete</button>
-          <Link to={"/update/"+todo.id} className='ml-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>Update</Link>
+import './todo.css'
+const ToDo = ({ todo }) => {
+  const dispatch = useDispatch()
+  return (
+    <div >
+      <div className="flex flex-col bg-gray-200 mb-2 p-6 ">
+        <div>
+          <h1 className="text-xl text-left">{todo.title}</h1>
+          <p className='text-base text-left'>{todo.description}</p>
         </div>
-        );
-    }
+        <div className='flex flex-col '>
+          <button className='bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold rounded m-1' onClick={() => dispatch(removeTodo(todo.id))}>Delete</button>
+          <Link to={"/update/" + todo.id} className='bg-blue-500 hover:bg-blue-700 text-white tex-sm m-1 font-bold rounded'>Update</Link>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default ToDo;
