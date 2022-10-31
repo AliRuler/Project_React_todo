@@ -24,7 +24,7 @@ const SignUpForm = () => {
       title: update ? editTodo.title : "",
       description: update ? editTodo.description : "",
       startDate: update? new Date(editTodo.startDate):new Date(),
-      endDate: update? new Date(editTodo.startDate):new Date(),
+      endDate: update? new Date(editTodo.endDate):new Date(),
     },
     // validate,
     onSubmit: (values, { resetForm }) => {
