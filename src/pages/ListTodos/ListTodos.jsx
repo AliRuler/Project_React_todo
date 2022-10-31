@@ -14,7 +14,7 @@ const Todo = () => {
     });
 
   return (
-    <div className='flex'>
+    <div className='flex m-4 bg-gray-100/50'>
       {dates.map(date =>(
         <Day startDate = {date}>
         {todos.filter(item =>(item.startDate.split(",")[0] === date)).map(item =>(
