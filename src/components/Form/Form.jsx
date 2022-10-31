@@ -23,19 +23,19 @@ const SignUpForm = () => {
     initialValues: {
       title: update ? editTodo.title : "",
       description: update ? editTodo.description : "",
-      startDate: new Date(),
-      endDate: new Date()
+      startDate: update? new Date(editTodo.startDate):new Date(),
+      endDate: update? new Date(editTodo.startDate):new Date(),
     },
     // validate,
     onSubmit: (values, { resetForm }) => {
+      values.startDate = values.startDate.toLocaleString();
+      values.endDate = values.endDate.toLocaleString();
       if (!update) {
-        values.startDate = values.startDate.toLocaleString();
-        values.endDate = values.endDate.toLocaleString();
         dispatch(addTodo({ ...values, id:Math.floor(Math.random() * 100), isDone: false }));
       } else {
         dispatch(updateTodo({ ...values, id: editTodo.id }));
       }
-      navigation("/");
+      navigation("/Todos");
       resetForm();
     },
   });

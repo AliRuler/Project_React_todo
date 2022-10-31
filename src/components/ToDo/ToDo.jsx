@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 import { removeTodo } from '../../toolkit/slices/todo.slice';
 import './todo.css'
 const ToDo = ({ todo }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData("id",todo.id);
+    e.dataTransfer.setData("startDate",todo.startDate);
+  };
   return (
-    <div >
+    <div draggable onDragStart={handleDragStart} >
       <div className="flex flex-col bg-gray-200 mb-2 p-6 ">
         <div>
           <h1 className="text-xl text-left">{todo.title}</h1>
