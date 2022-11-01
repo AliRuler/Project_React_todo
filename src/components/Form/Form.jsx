@@ -86,7 +86,7 @@ const SignUpForm = () => {
         showTimeSelect
         startDate={formik.values.startDate}
         endDate={formik.values.endDate}
-        dateFormat="h:mm aa (MMMM d)"
+        dateFormat="h:m (MMMM d)"
       />
       <label htmlFor=""
           className="">
@@ -101,7 +101,7 @@ const SignUpForm = () => {
         startDate={formik.values.startDate}
         endDate={formik.values.endDate}
         minDate={formik.values.startDate}
-        dateFormat="h:mm aa (MMMM d)"
+        dateFormat="hh:mm aa (MMMM d)"
       />
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
