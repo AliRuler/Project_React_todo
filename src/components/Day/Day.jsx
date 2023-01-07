@@ -27,7 +27,7 @@ const Day = ({ startDate, children }) => {
     const id = e.dataTransfer.getData("id");
     const datetodo = e.dataTransfer.getData("startDate");
     const newDate = startDate + ',' + datetodo.split(",")[1];
-    dispatch(updateTodo({ id: id, "startDate": newDate }))
+    dispatch(updateTodo({ id: +id, "startDate": newDate }))
   };
 
   const handleDragOver = (e) => {

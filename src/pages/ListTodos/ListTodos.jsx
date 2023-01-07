@@ -14,22 +14,21 @@ const ListTodos = () => {
   const dispatch = useDispatch();
   let dates = [];
 
-  useEffect(()=>{
-    console.log("UseEffect")
-    dates.map((item) => dispatch(setFilter({startDate:item, name:"all"})))
-  },[dates])
-  
   todos.map(item => {
     let data = item.startDate.split(",")[0];
     if (!dates.includes(data)) {
       dates.push(data);
     }
-    return dates
+    return dates.sort()
   });
-  console.log("dates",dates)
+
+  useEffect(()=>{
+    console.log("UseEffect")
+    dates.map((item) => dispatch(setFilter({startDate:item, name:"all"})))
+  },[dates])
 
   return (
-    <div className='flex '>
+    <div className='grid grid-cols-4 gap-4' >
         {dates.map(date => (
             <Day startDate={date}>
               {todos.filter(item => (item.startDate.split(",")[0] === date)).map(item => (
