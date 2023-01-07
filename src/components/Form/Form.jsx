@@ -10,7 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  const todos = useSelector(state => state.todos);
+  const todos = useSelector(state => state.todo.todos);
   const param = useParams();
   const update = param.id ? true : false;
   const navigation = useNavigate();
