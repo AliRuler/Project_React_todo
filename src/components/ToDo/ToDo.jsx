@@ -11,7 +11,7 @@ import './todo.css'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 const ToDo = ({ todo }) => {
-  const filter = useSelector(state => state.filter.name)
+  const filterName = useSelector(state => state.filterTodos.name)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleDragStart = (e) => {
@@ -29,10 +29,10 @@ const ToDo = ({ todo }) => {
     <div draggable onDragStart={handleDragStart}
       className={
         (
-          filter === "warn" ? warnnig ? "block" : "hidden" :
-            filter === "notDone" ? todo.isDone || timeUp || warnnig ? "hidden" : "block" :
-              filter === "timeout" ? timeUp ? todo.isDone? "hidden": "block" : "hidden" :
-                filter === "done" ? todo.isDone ? "block" : "hidden" : "block"
+          filterName === "warn" ? warnnig ? "block" : "hidden" :
+            filterName === "notDone" ? todo.isDone || timeUp || warnnig ? "hidden" : "block" :
+              filterName === "timeout" ? timeUp ? todo.isDone? "hidden": "block" : "hidden" :
+                filterName === "done" ? todo.isDone ? "block" : "hidden" : "block"
         )
         + " m-2"}>
       <div className={(timeUp ? todo.isDone ? "border-green-400 " : "border-red-400 " : todo.isDone ? "border-green-400 " : warnnig ? "border-amber-400 " : "border-blue-400 ") + " border-2 m-2 border-solid"}>

@@ -11,7 +11,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     todo: todoSlice, 
-    filter: filterSlice,
+    filterTodos: filterSlice,
 });
 
 const presistedReduer = persistReducer(persistConfig, rootReducer);
