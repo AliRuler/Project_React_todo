@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import filterSlice from "./slices/filter.slice";
 import todoSlice from "./slices/todo.slice";
+import logger from 'redux-logger'
 
 const persistConfig = {
     key: "myApp",
@@ -18,7 +19,7 @@ const presistedReduer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
     reducer: presistedReduer,
-    middleware: []
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export const persistor = persistStore(store);

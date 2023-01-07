@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import ToDo from '../../components/ToDo/ToDo';
 import Day from '../../components/Day/Day';
 import 'swiper/css';
-import SwiperCore, { Pagination, EffectCoverflow } from 'swiper';
 import "swiper/css/bundle"
+import { useDispatch } from 'react-redux';
+import { setFilter } from '../../toolkit/slices/filter.slice';
 
-SwiperCore.use([Pagination, EffectCoverflow]);
 
-const Todo = () => {
+
+const ListTodos = () => {
   const todos = useSelector(state => state.todo.todos);
+  const dispatch = useDispatch();
   let dates = [];
-  console.log("dates",todos)
+
+  useEffect(()=>{
+    console.log("UseEffect")
+    dates.map((item) => dispatch(setFilter({startDate:item, name:"all"})))
+  },[dates])
+  
   todos.map(item => {
     let data = item.startDate.split(",")[0];
     if (!dates.includes(data)) {
@@ -19,6 +26,7 @@ const Todo = () => {
     }
     return dates
   });
+  console.log("dates",dates)
 
   return (
     <div className='flex '>
@@ -28,6 +36,7 @@ const Todo = () => {
                 <ToDo
                   key={item.id}
                   todo={item}
+                  startDate = {date}
                 />
               )
               )
@@ -37,7 +46,7 @@ const Todo = () => {
       </div>
   )
 }
-export default Todo
+export default ListTodos
 
 
 // Import Swiper styles

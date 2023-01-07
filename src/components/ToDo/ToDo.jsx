@@ -10,8 +10,8 @@ import done from '../../assets/svg/done.icon.svg'
 import './todo.css'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-const ToDo = ({ todo }) => {
-  const filterName = useSelector(state => state.filterTodos.name)
+const ToDo = ({ todo, startDate }) => {
+  const filterName = useSelector(state => state.filterTodos.daysFilter.filter(item => item.startDate === startDate)[0]?.name)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleDragStart = (e) => {

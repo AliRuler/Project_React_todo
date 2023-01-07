@@ -7,12 +7,9 @@ import all from '../../assets/svg/all.icon.svg'
 import { useSelector } from 'react-redux';
 import { setFilter } from '../../toolkit/slices/filter.slice';
 
-
-
 const Day = ({ startDate, children }) => {
   const dispatch = useDispatch();
-  const filterName = useSelector(state => state.filterTodos.name)
-
+  const filterName = useSelector(state => state.filterTodos.daysFilter.filter(item => item.startDate == startDate)[0]?.name)
   function getDay(date) {
     date = new Date(date);
     let days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
@@ -45,22 +42,21 @@ const Day = ({ startDate, children }) => {
         <h2 className=''>{getDay(startDate)}</h2>
       </div>
       <div className='mt-2 '>
-        <button onClick={()=> dispatch(setFilter("all"))} w-auto className={(filterName === "all" ? 'bg-gray-300 hover:bg-gray-300' : 'bg-gray-700 hover:bg-gray-700') + ' text-white text-sm font-bold rounded m-1 p-1'} >
+        <button onClick={()=> dispatch(setFilter({startDate,name:"all"}))} w-auto className={(filterName === "all" ? 'bg-gray-300 hover:bg-gray-300' : 'bg-gray-700 hover:bg-gray-700') + ' text-white text-sm font-bold rounded m-1 p-1'} >
           <img width="30px" height="30px" src={all} alt="" />
         </button>
-        <button onClick={()=> dispatch(setFilter("done"))} w-auto className={(filterName === "done" ? 'bg-green-500 hover:bg-green-500' : 'bg-green-700 hover:bg-green-700') + ' text-white text-sm font-bold rounded m-1 p-1'} >
+        <button onClick={()=> dispatch(setFilter({startDate,name:"done"}))} w-auto className={(filterName === "done" ? 'bg-green-500 hover:bg-green-500' : 'bg-green-700 hover:bg-green-700') + ' text-white text-sm font-bold rounded m-1 p-1'} >
           <img width="30px" height="30px" src={done} alt="" />
         </button>
-        <button onClick={()=> dispatch(setFilter("notDone"))} w-auto className={(filterName === "notDone" ? 'bg-blue-500 hover:bg-blue-500' : 'bg-blue-700 hover:bg-blue-700') + ' text-white text-sm font-bold rounded m-1 p-1'} >
+        <button onClick={()=> dispatch(setFilter({startDate,name:"notDone"}))} w-auto className={(filterName === "notDone" ? 'bg-blue-500 hover:bg-blue-500' : 'bg-blue-700 hover:bg-blue-700') + ' text-white text-sm font-bold rounded m-1 p-1'} >
           <img width="30px" height="30px" src={check} alt="" />
         </button>
-        <button onClick={()=> dispatch(setFilter("warn"))} w-auto className={(filterName === "warn" ? 'bg-amber-500 hover:bg-amber-500' : 'bg-amber-700 hover:bg-amber-700') + ' text-white text-sm font-bold rounded m-1 p-1'} >
+        <button onClick={()=> dispatch(setFilter({startDate,name:"warn"}))} w-auto className={(filterName === "warn" ? 'bg-amber-500 hover:bg-amber-500' : 'bg-amber-700 hover:bg-amber-700') + ' text-white text-sm font-bold rounded m-1 p-1'} >
           <img width="30px" height="30px" src={check} alt="" />
         </button>
-        <button onClick={()=> dispatch(setFilter("timeout"))} w-auto className={(filterName === "timeout" ? 'bg-red-500 hover:bg-red-500' : 'bg-red-700 hover:bg-red-700') + ' text-white text-sm font-bold rounded m-1 p-1'} >
+        <button onClick={()=> dispatch(setFilter({startDate,name:"timeout"}))} w-auto className={(filterName === "timeout" ? 'bg-red-500 hover:bg-red-500' : 'bg-red-700 hover:bg-red-700') + ' text-white text-sm font-bold rounded m-1 p-1'} >
           <img width="30px" height="30px" src={check} alt="" />
         </button>
-
       </div>
       {children}
     </div>
