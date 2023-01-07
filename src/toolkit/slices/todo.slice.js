@@ -2,18 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 import todos from "../../data/db.js"
 export const todoSlice = createSlice({
     name: "todo",
-    initialState:{
-        todos:todos,
+    initialState: {
+        todos: todos,
     },
     reducers: {
-        addTodo: (state,action) => {
+        addTodo: (state, action) => {
             state.todos.push(action.payload);
         },
-        updateTodo:  (state,action) =>{
-            state.todos = state.todos.map(item => item.id == action.payload.id? {...item,...action.payload}:item);
+        updateTodo: (state, action) => {
+            state.todos = state.todos.map(item => item.id === action.payload.id ? { ...item, ...action.payload } : item);
         },
-        removeTodo: (state,action) =>{
+        removeTodo: (state, action) => {
             state.todos = state.todos.filter(item => item.id !== action.payload);
+        },
+        doneTodo: (state,action) => {
+            state.todos = state.todos.map(item => item.id === action.payload.id ? { ...item, isDone: !item.isDone } : item);
         }
     }
 });
@@ -21,7 +24,8 @@ export const todoSlice = createSlice({
 export const {
     addTodo,
     updateTodo,
-    removeTodo
+    removeTodo,
+    doneTodo
 } = todoSlice.actions;
 
 export default todoSlice.reducer;

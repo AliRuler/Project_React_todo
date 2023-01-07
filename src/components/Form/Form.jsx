@@ -17,7 +17,7 @@ const SignUpForm = () => {
 
   let editTodo = {};
   if (update) {
-    editTodo = todos.filter(item => item.id == param.id)[0];
+    editTodo = todos.filter(item => item.id === param.id)[0];
   }
   const formik = useFormik({
     initialValues: {

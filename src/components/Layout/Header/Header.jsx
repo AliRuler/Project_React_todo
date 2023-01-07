@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg shadow-md py-2 bg-gray-100 relative flex items-center w-full justify-between bg-gray-300">
+    <nav className="navbar navbar-expand-lg z-40 fixed shadow-md py-2 bg-gray-100 flex items-center w-full justify-between bg-gray-300">
       <div className="px-6 w-full flex flex-wrap items-center justify-between">
         <div className="flex items-center">
           <ul className="navbar-nav mr-auto lg:flex lg:flex-row">

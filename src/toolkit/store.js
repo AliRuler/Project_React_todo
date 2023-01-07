@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import filterSlice from "./slices/filter.slice";
 import todoSlice from "./slices/todo.slice";
 
 const persistConfig = {
@@ -9,10 +10,11 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-    cart: todoSlice, 
+    todo: todoSlice, 
+    filter: filterSlice,
 });
 
-const presistedReduer = persistReducer(persistConfig, todoSlice);
+const presistedReduer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
     reducer: presistedReduer,

@@ -6,7 +6,7 @@ const index = () => {
   return (
     <React.Fragment>
       <Header />
-      <main className='flex flex-row'>
+      <main className='flex flex-row top-16 absolute'>
         <Sidebar />
         <Outlet />
       </main>
