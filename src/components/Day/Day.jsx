@@ -18,7 +18,8 @@ const Day = ({ startDate, children }) => {
 
   function getMonth(date) {
     date = new Date(date);
-    let months = ['March', 'April', 'May', 'June', 'July', 'jan', 'Feb', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    let months = ['jan', 'Feb','March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    console.log(date.getMonth());
     return [date.getDate() + " " + months[date.getMonth()]];
   }
 

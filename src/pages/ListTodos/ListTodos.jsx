@@ -23,10 +23,8 @@ const ListTodos = () => {
   });
 
   useEffect(()=>{
-    console.log("UseEffect")
     dates.map((item) => dispatch(setFilter({startDate:item, name:"all"})))
   },[dates])
-
   return (
     <div className='grid grid-cols-4 gap-4' >
         {dates.map(date => (
